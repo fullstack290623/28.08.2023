@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>auto gen events1</title>
+    <title>auto gen events4</title>
     <style>
         .board {
             display: grid;
@@ -21,9 +21,11 @@
         }
     </style>    
 </head>
-<body>
+<body id="body1">
     <h1>GAME</h1>
-    <div class="board">
+    <div id="container" class="board">
+        <!--                            event     listener   -->
+        <!--
         <div class="cell"  id="cell-0" onclick="cell_click(0)">0</div>
         <div class="cell"  id="cell-1" onclick="cell_click(1)">1</div>
         <div class="cell"  id="cell-2" onclick="cell_click(2)">2</div>
@@ -33,7 +35,7 @@
         <div class="cell"  id="cell-6" onclick="cell_click(6)">6</div>
         <div class="cell"  id="cell-7" onclick="cell_click(7)">7</div>
         <div class="cell"  id="cell-8" onclick="cell_click(8)">8</div>
-        <div class="cell"  id="cell-9" onclick="cell_click(9)">9</div>
+        <div class="cell"  id="cell-9" onclick="cell_click(9)">9</div> -->
     </div>
    
     <script>
@@ -45,19 +47,32 @@
             // if the array in this index is already populate, do nothing
             // if the array is full of 'X' -> alert('Finish')
             //alert(cell_number)
-            document.getElementById(`cell-${cell_number}`).textContent = 'X'
+            if (arr[cell_number] != 'X') {
+                document.getElementById(`cell-${cell_number}`).textContent = 'X'
+                arr[cell_number] = 'X'
+                // ['X', 'X', -1]
+                //arr.filter(element => element == 'X').length == arr.length
+                // if (arr.some(element => element == -1) == false) {
+                //     alert('FINISH !')
+                // }
+                if (arr.every(element => element == 'X')) {
+                    alert('FINISH !')
+                }
+            }
         }
         
-        // do NOT write this code:
-        // function cell_click0() {
-        //     alert(0)
-        // }
-        // function cell_click1() {
-        //     alert(1)
-        // }        
-        // function cell_click2() {
-        //     alert(2)
-        // }                
+        // <div class="cell"  id="cell-0" onclick="cell_click(0)">0</div>
+        // add 1 element
+        const new_cell_0 = document.createElement('div')
+        new_cell_0.textContent = "0"
+        new_cell_0.addEventListener('click', () => {
+            cell_click(0)
+        })
+        new_cell_0.id = "cell-0"
+        new_cell_0.classList.add('cell')
+        
+        document.getElementById('container').appendChild(new_cell_0)
+            
     </script>
 
 
